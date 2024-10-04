@@ -17,14 +17,16 @@
     "server-only": "0.0.1"
   },
   "devDependencies": {
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.14",
     "@types/negotiator": "0.6.3",
     "@types/node": "^22.7.4",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.14",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.6.2"
   }
 }
