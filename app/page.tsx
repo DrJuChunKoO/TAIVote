@@ -1,29 +1,74 @@
 import { twMerge } from "tailwind-merge";
-import { getDictionary } from "../../get-dictionary";
-import { Locale } from "../../i18n-config";
-import Counter from "./components/counter";
 
-export default async function IndexPage({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
-  const dictionary = await getDictionary(lang);
-
+export default async function IndexPage() {
   return (
     <div className="container">
       <div>
-        <p>Current locale: {lang}</p>
-        <p>
-          This text is rendered on the server:{" "}
-          {dictionary["server-component"].welcome}
-        </p>
-        <Counter dictionary={dictionary.counter} />
         <Question
           question="咖哩要拌嗎"
           options={[
             {
               text: "拌",
+              value: 1,
+              percentage: 10,
+            },
+            {
+              text: "不拌",
+              value: 0,
+              percentage: 90,
+            },
+          ]}
+        />
+        <Question
+          question="咖哩要拌嗎"
+          options={[
+            {
+              text: "拌 - 1,990 票",
+              value: 1,
+              percentage: 10,
+            },
+            {
+              text: "不拌",
+              value: 0,
+              percentage: 90,
+            },
+          ]}
+        />
+        <Question
+          question="咖哩要拌嗎"
+          options={[
+            {
+              text: "拌 - 1,990 票",
+              value: 1,
+              percentage: 10,
+            },
+            {
+              text: "不拌",
+              value: 0,
+              percentage: 90,
+            },
+          ]}
+        />
+        <Question
+          question="咖哩要拌嗎"
+          options={[
+            {
+              text: "拌 - 1,990 票",
+              value: 1,
+              percentage: 10,
+            },
+            {
+              text: "不拌",
+              value: 0,
+              percentage: 90,
+            },
+          ]}
+        />
+        <Question
+          question="咖哩要拌嗎"
+          options={[
+            {
+              text: "拌 - 1,990 票",
               value: 1,
               percentage: 10,
             },
@@ -76,7 +121,7 @@ function Question({
     <div className="mb-4 rounded-xl border border-white/10 p-4 shadow-md transition-all hover:shadow-lg">
       <h2 className="mb-4 text-xl font-bold text-gray-200">{question}</h2>
       <div className="flex flex-col gap-4">
-        {options.slice(0, 5).map((option, index) => (
+        {options.map((option, index) => (
           <div key={index}>
             <div className="mb-2 flex items-end justify-between">
               <div className="font-medium text-gray-300"> {option.text} </div>
@@ -88,7 +133,7 @@ function Question({
               <div
                 className={twMerge(
                   `h-4 rounded-full bg-gradient-to-b mix-blend-overlay transition-all duration-500 ease-in-out`,
-                  colors[index],
+                  colors[index % colors.length],
                 )}
                 style={{ width: `${option.percentage}%` }}
               />
