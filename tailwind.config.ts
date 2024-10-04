@@ -21,6 +21,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        noise: "url('/images/noise.svg')",
+      },
     },
   },
   plugins: [],
