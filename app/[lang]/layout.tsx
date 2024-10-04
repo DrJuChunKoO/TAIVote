@@ -1,5 +1,6 @@
 import { i18n, type Locale } from "../../i18n-config";
-
+import "./globals.css";
+import Nav from "./components/nav";
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
@@ -13,7 +14,10 @@ export default function Root({
 }) {
   return (
     <html lang={params.lang}>
-      <body>{children}</body>
+      <body className="bg-[#282C33] text-[#C8CCD4]">
+        <Nav lang={params.lang} />
+        {children}
+      </body>
     </html>
   );
 }
