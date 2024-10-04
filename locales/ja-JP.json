@@ -5,5 +5,8 @@
   "counter": {
     "increment": "増加",
     "decrement": "減少"
+  },
+  "common": {
+    "vote": "投票"
   }
 }
