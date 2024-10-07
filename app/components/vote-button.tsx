@@ -25,7 +25,7 @@ export default function VoteButton() {
         {open && (
           <motion.div
             className={twMerge(
-              "fixed inset-0 bottom-0 z-10 flex h-[100svh] items-end bg-[#282C33]/50 pt-4 backdrop-blur-sm",
+              "bg-noise fixed inset-0 bottom-0 z-10 flex h-[100svh] items-end pt-4 backdrop-blur-sm",
             )}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
