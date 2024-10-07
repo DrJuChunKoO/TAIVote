@@ -2,20 +2,16 @@ import "./globals.css";
 import Nav from "./components/nav";
 import VoteButton from "./components/vote-button";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
-
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html>
       <body className="flex h-[100svh] flex-col bg-[#282C33] text-[#C8CCD4]">
         <NextIntlClientProvider messages={messages}>
           <Nav />
