@@ -12,6 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: process.env.WLD_CLIENT_ID,
       clientSecret: process.env.WLD_CLIENT_SECRET,
       idToken: true,
+      //@ts-ignore
       checks: ["state", "nonce", "pkce"],
       profile(profile) {
         return {
