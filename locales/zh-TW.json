@@ -1,11 +1,4 @@
 {
-  "server-component": {
-    "welcome": "歡迎～"
-  },
-  "counter": {
-    "increment": "增加",
-    "decrement": "減少"
-  },
   "common": {
     "vote": "投票",
     "sign_in_with_worldid": "使用 World ID 登入"
