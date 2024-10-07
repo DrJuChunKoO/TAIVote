@@ -45,7 +45,7 @@ export default function VoteButton() {
               >
                 <div className="flex items-center justify-end">
                   <button
-                    className="flex size-10 items-center justify-center rounded-full transition-colors duration-300 ease-in-out hover:bg-white/5 active:bg-white/10"
+                    className="flex size-10 items-center justify-center rounded-full transition-colors hover:bg-white/5 active:bg-white/10"
                     onClick={() => setOpen(false)}
                   >
                     <X />
