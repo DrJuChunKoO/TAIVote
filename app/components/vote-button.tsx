@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Vote } from "lucide-react";
 export default function VoteButton() {
   const [open, setOpen] = useState(true);
   const t = useTranslations("common");
@@ -52,7 +52,8 @@ export default function VoteButton() {
                   </button>
                 </div>
 
-                <div className="mb-10">
+                <div className="mb-10 flex flex-col items-center justify-center">
+                  <Vote size={48} />
                   <div className="mb-1 text-center text-2xl font-bold text-white/80">
                     TAIVote
                   </div>
