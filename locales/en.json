@@ -1,11 +1,4 @@
 {
-  "server-component": {
-    "welcome": "Welcome"
-  },
-  "counter": {
-    "increment": "Increment",
-    "decrement": "Decrement"
-  },
   "common": {
     "vote": "Vote",
     "sign_in_with_worldid": "Sign in with World ID"

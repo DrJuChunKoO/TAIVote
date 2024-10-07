@@ -1,11 +1,4 @@
 {
-  "server-component": {
-    "welcome": "ようこそ"
-  },
-  "counter": {
-    "increment": "増加",
-    "decrement": "減少"
-  },
   "common": {
     "vote": "投票",
     "sign_in_with_worldid": "Worldcoin でサインイン"
