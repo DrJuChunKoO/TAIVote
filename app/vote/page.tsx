@@ -102,17 +102,19 @@ export default function Page() {
       <div className="container flex flex-1 flex-col gap-2 pb-2 pt-4">
         {(step === 1 || step === 2) && (
           <div className="flex items-center justify-between gap-2">
-            <div>
-              {progress > 1 && (
-                <Button
-                  color="stone"
-                  onClick={() => prevQuestion()}
-                  className="w-max px-6 py-2 md:px-6 md:py-2 md:text-base"
-                >
-                  <ArrowLeft className="transition-transform group-hover:-translate-x-1" />
-                  {t("back")}
-                </Button>
+            <div
+              className={twMerge(
+                progress === 1 && "pointer-events-none opacity-0",
               )}
+            >
+              <Button
+                color="stone"
+                onClick={() => prevQuestion()}
+                className="w-max rounded-lg bg-white/5 px-6 py-2 hover:bg-stone-50 hover:text-stone-900 active:text-stone-50 md:px-6 md:py-2 md:text-base"
+              >
+                <ArrowLeft className="transition-transform group-hover:-translate-x-1" />
+                {t("back")}
+              </Button>
             </div>
             <div>
               <div className="text-right text-lg font-semibold">
@@ -159,7 +161,7 @@ export default function Page() {
               animate="center"
               exit="exit"
             >
-              <div className="bg-black/10 px-6 py-3 text-opacity-75">
+              <div className="bg-black/10 px-6 py-3 font-normal text-opacity-75">
                 {t(`section${section}.title`)}
               </div>
               <div className="flex h-full flex-1 flex-col gap-2 p-6">
