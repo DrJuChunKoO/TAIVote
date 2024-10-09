@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const handlers = NextAuth({
   providers: [
     {
       id: "worldcoin",
@@ -29,6 +29,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.userRole = "user";
       return token;
     },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
-  debug: true,
 });

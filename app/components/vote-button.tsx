@@ -65,7 +65,7 @@ export default function VoteButton() {
 
                 <button
                   className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-                  onClick={() => signIn("worldcoin")}
+                  onClick={() => signIn("worldcoin", { callbackUrl: "/vote" })}
                 >
                   {t("sign_in_with_worldid")}
                 </button>
