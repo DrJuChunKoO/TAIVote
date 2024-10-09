@@ -1,29 +1,43 @@
 import { twMerge } from "tailwind-merge";
 
+import VoteButton from "./components/vote-button";
 export default async function IndexPage() {
   return (
-    <div className="container">
-      <Question>
-        <QuestionTitle>咖哩要拌嗎</QuestionTitle>
-        <Option text="拌" percentage={10} />
-        <Option text="不拌" percentage={90} />
-      </Question>
-      <Question>
-        <QuestionTitle>咖哩要拌嗎</QuestionTitle>
-        <Option text="拌" percentage={10} />
-        <Option text="不拌" percentage={90} />
-      </Question>
-      <Question>
-        <QuestionTitle>咖哩要拌嗎</QuestionTitle>
-        <Option text="拌" percentage={10} />
-        <Option text="不拌" percentage={90} />
-      </Question>
-      <Question>
-        <QuestionTitle>咖哩要拌嗎</QuestionTitle>
-        <Option text="拌" percentage={10} />
-        <Option text="不拌" percentage={90} />
-      </Question>
-    </div>
+    <>
+      <div className="relative flex-1 overflow-x-auto pt-8">
+        <div className="container">
+          <Question>
+            <QuestionTitle>咖哩要拌嗎</QuestionTitle>
+            <Option text="拌" percentage={10} />
+            <Option text="不拌" percentage={90} />
+          </Question>
+          <Question>
+            <QuestionTitle>咖哩要拌嗎</QuestionTitle>
+            <Option text="拌" percentage={10} />
+            <Option text="不拌" percentage={90} />
+          </Question>
+          <Question>
+            <QuestionTitle>咖哩要拌嗎</QuestionTitle>
+            <Option text="拌" percentage={10} />
+            <Option text="不拌" percentage={90} />
+          </Question>
+          <Question>
+            <QuestionTitle>咖哩要拌嗎</QuestionTitle>
+            <Option text="拌" percentage={10} />
+            <Option text="不拌" percentage={90} />
+          </Question>
+        </div>
+        <div className="gradient-blur translate-y-3">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <VoteButton />
+    </>
   );
 }
 
@@ -61,7 +75,7 @@ function Option({
         <div className="font-medium text-gray-300">{text}</div>
         <div className="font-mono text-sm text-gray-400">{percentage}%</div>
       </div>
-      <div className="bg-noise h-4 w-full rounded-full bg-gray-600 shadow-inner">
+      <div className="h-4 w-full rounded-full bg-gray-600 bg-noise shadow-inner">
         <div
           className={twMerge(
             `h-4 rounded-full mix-blend-overlay transition-all duration-500 ease-in-out`,
