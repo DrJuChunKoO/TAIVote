@@ -8,12 +8,12 @@ export async function POST(request: Request) {
   const query = await request.json();
   const session = await getServerSession(config);
   if (session && session.user) {
-    const userId = session.user.id;
+    const userId = session.user.name!;
     const voteQuery = [...query[0], ...query[1], ...query[2]];
     if (voteQuery.length !== totalQuesions) {
       throw new Error("Invalid query length");
     }
-    console.log(`[Vote] ${session.user.name!}: ${voteQuery}`);
+    console.log(`[Vote] ${userId}: ${voteQuery}`);
 
     const hasVoted = await checkVotedUserId(userId);
     if (hasVoted) {
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const voteResult = await vote(session.user.name!, voteQuery);
+    const voteResult = await vote(userId, voteQuery);
     if (voteResult) {
       return new Response(JSON.stringify({ success: true, error: null }));
     } else {
