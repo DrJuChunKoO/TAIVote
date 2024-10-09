@@ -117,12 +117,12 @@ export default function Page() {
               </Button>
             </div>
             <div>
-              <div className="text-right text-lg font-semibold">
+              <div className="mb-1 text-right">
                 {progress} / {totalQuesions}
               </div>
               <div className="h-1 w-40 overflow-hidden rounded-full bg-gray-500">
                 <div
-                  className="h-1 rounded-full bg-white transition-all"
+                  className="glass-effect h-1 rounded-full bg-white/50 transition-all"
                   style={{
                     width: `${(progress / totalQuesions) * 100}%`,
                   }}
@@ -161,7 +161,7 @@ export default function Page() {
               animate="center"
               exit="exit"
             >
-              <div className="bg-black/10 px-6 py-3 font-normal text-opacity-75">
+              <div className="bg-black/10 px-6 py-3 font-normal tracking-tight text-opacity-75">
                 {t(`section${section}.title`)}
               </div>
               <div className="flex h-full flex-1 flex-col gap-2 p-6">
