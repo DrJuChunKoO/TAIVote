@@ -12,8 +12,8 @@
     "submit": "Submit",
     "submitTitle": "Completion",
     "submitDescription": "You have completed the voting process! Please click the button below to submit your choices. Note: You can only submit your vote once. If you need to modify your answers, use the back button in the top left corner to make changes. Thank you for participating!",
-    "doneTitle:": "Submission Complete",
-    "doneDescription:": "Your vote has been completed. You can click the button below to view the immediate vote results.",
+    "doneTitle": "Submission Complete",
+    "doneDescription": "Your vote has been completed. You can click the button below to view the immediate vote results.",
     "view_result": "View Results",
     "section1": {
       "title": "1. Personal Views on AI",
