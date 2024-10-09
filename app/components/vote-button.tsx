@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Vote } from "lucide-react";
 import { signIn } from "next-auth/react";
 export default function VoteButton() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const t = useTranslations("common");
   return (
     <div className="container">
@@ -16,7 +16,7 @@ export default function VoteButton() {
         )}
       >
         <button
-          className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 md:text-xl"
           onClick={() => setOpen(true)}
         >
           {t("vote")}
@@ -63,7 +63,7 @@ export default function VoteButton() {
                 </div>
 
                 <button
-                  className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                  className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 md:text-xl"
                   onClick={() => signIn("worldcoin", { callbackUrl: "/vote" })}
                 >
                   {t("sign_in_with_worldid")}
