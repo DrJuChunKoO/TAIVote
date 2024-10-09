@@ -104,6 +104,7 @@ export default function Page() {
           <div className="flex items-center justify-between gap-2">
             <div
               className={twMerge(
+                "transition-opacity",
                 progress === 1 && "pointer-events-none opacity-0",
               )}
             >
