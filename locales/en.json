@@ -5,74 +5,74 @@
     "sign_in_with_worldid": "Sign in with World ID"
   },
   "questions": {
-    "title": "TAIVote: Taiwan AI-policy Vote",
-    "description": "Hello, welcome to 'TAIVote: Taiwan AI-policy Vote.' Please answer the following questions based on your thoughts. Your opinions will help shape a more representative AI Basic Law. Let's work together for a better Taiwan, and thank you again for your participation! (Translated by AI)",
+    "title": "TAIVote: Taiwan AI Policy Vote",
+    "description": "Welcome to 'TAIVote: Taiwan AI Policy Vote.' Please answer the following questions based on your thoughts. Your opinions will help shape a more representative AI Basic Law. Together, we can work towards a better Taiwan. Thank you for your participation!",
     "continue": "Continue",
     "back": "Back",
     "submit": "Submit",
-    "submitTitle": "Completed",
-    "submitDescription": "Voting is complete! Please click the button below to submit your choices. Note: You can only submit your vote once. If you need to modify your answers, use the back button in the top left to make changes. Thank you for your participation!",
+    "submitTitle": "Completion",
+    "submitDescription": "You have completed the voting process! Please click the button below to submit your choices. Note: You can only submit your vote once. If you need to modify your answers, use the back button in the top left corner to make changes. Thank you for participating!",
     "section1": {
-      "title": "1. Personal Opinions on AI",
-      "question1": "At this stage, do you think it is more important for the Taiwan government to 'Encourage AI Innovation' or 'Regulate AI'?",
+      "title": "1. Personal Views on AI",
+      "question1": "At this stage, do you believe it is more important for the Taiwanese government to 'Encourage AI Innovation' or 'Regulate AI'?",
       "options1": [
         "Encourage AI Innovation",
         "Regulate AI",
         "Both are equally important"
       ],
-      "question2": "Who do you think should own the copyright of AI-generated content?",
+      "question2": "Who do you think should hold the copyright for AI-generated content?",
       "options2": [
         "The developer/company of the AI system",
         "The individual/organization using the AI system",
-        "The original data author used to train the AI"
+        "The original authors of the data used to train the AI"
       ],
-      "question3": "How do you think 'AI Medical Diagnostic Systems' should be regulated?",
+      "question3": "How do you believe 'AI Medical Diagnostic Systems' should be regulated?",
       "options3": [
-        "It should only be used as an auxiliary tool, with the final decision made by doctors",
-        "It can make independent diagnoses but must be supervised by human doctors"
+        "They should only be used as auxiliary tools, with final decisions made by human doctors",
+        "They can make independent diagnoses but must be supervised by human doctors"
       ],
-      "question4": "How should the application of AI in the 'job market' be regulated?",
+      "question4": "How should AI applications in the job market be regulated?",
       "options4": [
         "AI should be restricted from replacing human jobs",
-        "No intervention, let the market develop freely"
+        "No intervention, allow the market to develop freely"
       ]
     },
     "section2": {
-      "title": "2. Opinions on the Development of AI in Taiwan",
+      "title": "2. Views on AI Development in Taiwan",
       "question1": "Do you support Taiwan enacting an 'AI Basic Law' to regulate the development and application of AI?",
       "options1": ["Yes", "No"],
-      "question2": "Do you support the Ministry of Education allocating a budget for 'AI Equality' to cover AI-related training courses and software fees for teachers and students at all levels?",
+      "question2": "Do you support the Ministry of Education allocating a budget for 'AI Equity' to cover AI-related training courses and software fees for teachers and students at all levels?",
       "options2": ["Yes", "No"],
-      "question3": "Do you support the Taiwan government opening public sector and publicly funded content for AI training without liability or cost?",
+      "question3": "Do you support the Taiwanese government making public sector and publicly funded content available for AI training without liability or cost?",
       "options3": ["Yes", "No"],
-      "question4": "Do you support the Taiwan government expanding or amending copyright laws, similar to Japan, to allow AI to use all local Taiwanese corpora, images, and videos for training without authorization and free of charge?",
+      "question4": "Do you support the Taiwanese government expanding or amending copyright laws, similar to Japan, to allow AI to use all local Taiwanese text corpora, images, and videos for training without authorization and free of charge?",
       "options4": ["Yes", "No"],
-      "question5": "Do you think decisions made by AI systems should be transparent and explainable to humans?",
+      "question5": "Do you believe decisions made by AI systems should be transparent and explainable to humans?",
       "options5": ["Yes", "No"],
-      "question6": "'Sovereign AI' aims to reduce reliance on external technologies and supply chains, ensuring full control and autonomy over AI development, data access, and decision-making processes. Do you support the Taiwan government making the development mechanisms, budget, and processes for 'Sovereign AI' transparent and involving public participation?",
+      "question6": "'Sovereign AI' aims to reduce reliance on external technologies and supply chains, ensuring full control and autonomy over AI development, data access, and decision-making processes. Do you support the Taiwanese government making the development mechanisms, budget, and processes for 'Sovereign AI' transparent and involving public participation?",
       "options6": ["Yes", "No"],
-      "question7": "Do you support the Taiwan government collaborating with international third parties for 'AI Ethics and Safety Assessments'?",
+      "question7": "Do you support the Taiwanese government collaborating with international third parties for 'AI Ethics and Safety Assessments'?",
       "options7": ["Support", "Oppose", "No Opinion"],
-      "question8": "Do you support Taiwan participating in establishing an 'International AI Transparency Organization' to help all countries address AI development and safety issues? (Reference video: https://youtu.be/GFFr42xaNtg)",
+      "question8": "Do you support Taiwan participating in the establishment of an 'International AI Transparency Organization' to help all countries address AI development and safety issues? (Reference video: https://youtu.be/GFFr42xaNtg)",
       "options8": ["Support", "Oppose", "No Opinion"]
     },
     "section3": {
-      "title": "3. Opinions on the Direction and Content of Taiwan's 'AI Basic Law'",
-      "question1": "Do you think this law should promote AI industry innovation while ensuring that employment opportunities are not significantly displaced?",
+      "title": "3. Views on the Direction and Content of Taiwan's 'AI Basic Law'",
+      "question1": "Do you believe this law should promote AI industry innovation while ensuring that employment opportunities are not significantly displaced?",
       "options1": ["Yes", "No"],
       "question2": "Do you agree that this law should regulate and review high-risk AI applications?",
       "options2": ["Yes", "No"],
       "question3": "Do you agree that this law should enhance protection for personal privacy and data security in AI systems?",
       "options3": ["Yes", "No"],
-      "question4": "Do you think this law should require AI technologies to follow ethical standards to avoid bias and discrimination?",
+      "question4": "Do you believe this law should require AI technologies to adhere to ethical standards to prevent bias and discrimination?",
       "options4": ["Yes", "No"],
       "question5": "Do you support this law establishing transparent mechanisms to allow the public to understand how AI systems make decisions?",
       "options5": ["Yes", "No"],
-      "question6": "Do you support this law requiring the Taiwan government to invest in AI education and training to improve the public's AI literacy?",
+      "question6": "Do you support this law requiring the Taiwanese government to invest in AI education and training to improve public AI literacy?",
       "options6": ["Yes", "No"],
       "question7": "Do you agree that this law should encourage the application of AI technologies in public services such as healthcare and education?",
       "options7": ["Yes", "No"],
-      "question8": "Do you support this law requiring the Taiwan government to participate in international cooperation to jointly set standards and regulations for AI development?",
+      "question8": "Do you support this law requiring the Taiwanese government to participate in international cooperation to jointly establish standards and regulations for AI development?",
       "options8": ["Yes", "No"],
       "question9": "Do you agree that this law should prioritize environmental sustainability and social responsibility in AI development?",
       "options9": ["Yes", "No"]
