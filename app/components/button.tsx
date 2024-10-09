@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 export default function Button({
@@ -6,12 +6,13 @@ export default function Button({
   className,
   color,
   onClick,
+  ...attr
 }: {
   children: React.ReactNode;
   className?: string;
   color: string;
   onClick: () => void;
-}) {
+} & HTMLMotionProps<"button">) {
   return (
     <motion.button
       className={twMerge(
@@ -32,6 +33,7 @@ export default function Button({
       whileTap={{
         scale: 0.95,
       }}
+      {...attr}
     >
       {children}
     </motion.button>
