@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
-
-export const handlers = NextAuth({
+import type { NextAuthOptions } from "next-auth";
+export const config = {
   providers: [
     {
       id: "worldcoin",
@@ -36,4 +36,5 @@ export const handlers = NextAuth({
       return baseUrl;
     },
   },
-});
+} satisfies NextAuthOptions;
+export const handlers = NextAuth(config);
