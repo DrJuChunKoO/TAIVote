@@ -29,11 +29,6 @@ async function checkVotedUserId(userId: string) {
 // vote
 async function vote(userId: string, query: number[]) {
   try {
-    const hasVoted = await checkVotedUserId(userId);
-    if (hasVoted) {
-      return false;
-    }
-
     // Save user query
     await kv.lpush(`user_query:${userId}`, JSON.stringify(query));
 
