@@ -2,18 +2,29 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import VoteButton from "../components/vote-button";
 import Button from "../components/button";
-import { Vote, ArrowRight, ArrowLeft, CircleCheckBig, Bot } from "lucide-react";
+import {
+  Vote,
+  ArrowRight,
+  ArrowLeft,
+  CircleCheckBig,
+  Bot,
+  Send,
+  Loader,
+} from "lucide-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 export default function Page() {
+  const router = useRouter();
   const t = useTranslations("questions");
   const { data } = useSession();
   // 0: Main screen
   // 1: Questions
   // 2: Submit screen
   const [step, setStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [section, setSection] = useState(1);
   const [question, setQuestion] = useState(1);
   const [direction, setDirection] = useState(1);
@@ -37,6 +48,27 @@ export default function Page() {
   })();
   const totalQuesions = sectionLimits.reduce((acc, x) => acc + x, 0);
 
+  async function submitVote() {
+    try {
+      setIsLoading(true);
+      const res = await fetch("/api/vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result),
+      });
+      if (res.status === 200) {
+        setStep(3);
+      } else {
+        alert("Vote sending failed, please try again later");
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   function nextQuestion() {
     setDirection(1);
     const currentLimit = sectionLimits[section - 1];
@@ -186,10 +218,29 @@ export default function Page() {
               exit="exit"
             >
               <div className="flex h-full flex-col justify-center gap-2">
-                <CircleCheckBig size={72} />
+                <Send size={72} />
                 <div className="text-3xl font-bold">{t("submitTitle")}</div>
                 <div className="text-lg leading-[1.5em] opacity-75">
                   {t("submitDescription")}
+                </div>
+              </div>
+            </motion.div>
+          )}
+          {step === 3 && (
+            <motion.div
+              className="h-full rounded-xl border border-white/10 bg-noise p-6 shadow-md"
+              key="step-3"
+              variants={variants}
+              custom={direction}
+              initial="enter"
+              animate="center"
+              exit="exit"
+            >
+              <div className="flex h-full flex-col justify-center gap-2">
+                <CircleCheckBig size={72} />
+                <div className="text-3xl font-bold">{t("doneTitle")}</div>
+                <div className="text-lg leading-[1.5em] opacity-75">
+                  {t("doneDescription")}
                 </div>
               </div>
             </motion.div>
@@ -238,9 +289,20 @@ export default function Page() {
                     </Button>
                   );
                 })}
-            {step === 2 && (
-              <Button color="blue" onClick={() => setStep(1)}>
-                {t("submit")}
+            {step === 2 &&
+              (isLoading ? (
+                <Button color="teal" onClick={() => {}}>
+                  <Loader className="animate-spin" />
+                </Button>
+              ) : (
+                <Button color="blue" onClick={() => submitVote()}>
+                  {t("submit")}
+                  <ArrowRight className="transition-transform group-hover:translate-x-1" />
+                </Button>
+              ))}
+            {step === 3 && (
+              <Button color="blue" onClick={() => router.push("/")}>
+                {t("view_result")}
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </Button>
             )}
