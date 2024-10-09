@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     if (voteQuery.length !== totalQuesions) {
       throw new Error("Invalid query length");
     }
-    console.log(`[Vote] ${userId}: ${voteQuery}`);
 
     const hasVoted = await checkVotedUserId(userId);
     if (hasVoted) {
@@ -24,6 +23,8 @@ export async function POST(request: Request) {
         },
       );
     }
+
+    console.log(`[Vote] ${userId}: ${voteQuery}`);
 
     const voteResult = await vote(userId, voteQuery);
     if (voteResult) {
