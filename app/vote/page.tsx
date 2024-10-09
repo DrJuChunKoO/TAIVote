@@ -61,7 +61,12 @@ export default function Page() {
       if (res.status === 200) {
         setStep(3);
       } else {
-        alert("Vote sending failed, please try again later");
+        const data = await res.json();
+        if (data.error === "User has already voted") {
+          alert("You have already voted.");
+        } else {
+          alert("Vote sending failed, please try again later");
+        }
       }
     } catch (e) {
       console.error(e);
