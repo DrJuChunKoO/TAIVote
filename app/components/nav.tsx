@@ -1,13 +1,17 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { setUserLocale } from "../../services/locale";
 import { Locale } from "../../i18n/config";
 export default function Nav() {
+  const t = useTranslations("common");
   return (
     <nav className="bg-gradient-to-b from-black/5 to-black/10 py-2">
       <div className="container flex flex-wrap items-center justify-between">
-        <div className="text-2xl font-bold">TAIVote</div>
+        <div>
+          <div className="text-xl font-bold">TAIVote</div>
+          <div className="text-xs tracking-wide">{t("subtitle")}</div>
+        </div>
         <div className="flex gap-2">
           <LocaleButton locale="en" text="EN" />
           <span className="select-none opacity-10">{" | "}</span>
