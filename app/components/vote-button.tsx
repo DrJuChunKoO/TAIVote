@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Vote } from "lucide-react";
 import { signIn } from "next-auth/react";
+import Button from "../components/button";
 export default function VoteButton() {
   const [open, setOpen] = useState(false);
   const t = useTranslations("common");
@@ -15,12 +16,13 @@ export default function VoteButton() {
           "rounded-t-xl border border-b-0 border-white/10 p-4 shadow-md",
         )}
       >
-        <button
-          className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 md:text-xl"
+        <Button
+          color="blue"
+          className="rounded-lg"
           onClick={() => setOpen(true)}
         >
           {t("vote")}
-        </button>
+        </Button>
       </motion.div>
       <AnimatePresence>
         {open && (
@@ -62,12 +64,13 @@ export default function VoteButton() {
                   </div>
                 </div>
 
-                <button
-                  className="w-full rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ease-in-out hover:from-pink-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 md:text-xl"
+                <Button
+                  color="blue"
+                  className="rounded-lg"
                   onClick={() => signIn("worldcoin", { callbackUrl: "/vote" })}
                 >
                   {t("sign_in_with_worldid")}
-                </button>
+                </Button>
               </motion.div>
             </div>
           </motion.div>

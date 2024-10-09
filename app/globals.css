@@ -141,3 +141,46 @@ body {
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-effect,
+  .glass-effect-inset {
+    --glass-bg: lch(
+      var(--glass-bg-l) var(--glass-bg-c) var(--glass-bg-h) / var(--glass-bg-a)
+    );
+    background-image: linear-gradient(
+      140deg,
+      var(--glass-bg) 28.7%,
+      color-mix(in lch, var(--glass-bg) 30%, transparent)
+    );
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-effect {
+    box-shadow:
+      rgba(255, 255, 255, 0.1) 0.5px 0.5px 0.5px 0px inset,
+      rgba(255, 255, 255, 0.01) -0.5px -0.5px 0.5px 0px inset,
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .glass-effect-inset {
+    box-shadow:
+      rgba(255, 255, 255, 0.1) -0.5px -0.5px 0.5px 0px inset,
+      rgba(0, 0, 0, 0.01) 1px 1px 1px 0px inset;
+  }
+
+  .glass-effect.hoverable,
+  .glass-effect-inset.hoverable {
+    &:hover {
+      --glass-bg: lch(
+        var(--glass-bg-l) var(--glass-bg-c) var(--glass-bg-h) /
+          calc(var(--glass-bg-a) + 0.05)
+      );
+    }
+  }
+}

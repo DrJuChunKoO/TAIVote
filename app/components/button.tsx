@@ -15,17 +15,17 @@ export default function Button({
   return (
     <motion.button
       className={twMerge(
-        "group flex w-full items-center justify-center gap-2 rounded-xl p-2 font-semibold transition-colors md:p-3 md:text-xl",
+        "glass-effect hoverable group flex w-full items-center justify-center gap-2 rounded-xl p-2 font-semibold transition-colors md:p-3 md:text-xl",
         color === "blue" &&
-          "bg-blue-600 text-blue-100 hover:bg-blue-800 active:bg-blue-900",
+          "bg-blue-600/80 text-blue-100 hover:bg-blue-600/60 active:bg-blue-600/40",
         color === "red" &&
-          "bg-red-600 text-red-100 hover:bg-red-800 active:bg-red-900",
+          "bg-red-600/80 text-red-100 hover:bg-red-600/60 active:bg-red-600/40",
         color === "green" &&
-          "bg-green-600 text-green-100 hover:bg-green-800 active:bg-green-900",
+          "bg-green-600/80 text-green-100 hover:bg-green-600/60 active:bg-green-600/40",
         color === "teal" &&
-          "bg-teal-600 text-teal-100 hover:bg-teal-800 active:bg-teal-900",
+          "bg-teal-600/80 text-teal-100 hover:bg-teal-600/60 active:bg-teal-600/40",
         color === "stone" &&
-          "bg-stone-600 text-stone-100 hover:bg-stone-800 active:bg-stone-900",
+          "bg-stone-600/80 text-stone-100 hover:bg-stone-600/60 active:bg-stone-600/40",
         className,
       )}
       onClick={onClick}

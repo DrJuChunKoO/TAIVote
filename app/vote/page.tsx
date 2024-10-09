@@ -110,7 +110,7 @@ export default function Page() {
               <Button
                 color="stone"
                 onClick={() => prevQuestion()}
-                className="w-max rounded-lg bg-white/5 px-6 py-2 hover:bg-stone-50 hover:text-stone-900 active:text-stone-50 md:px-6 md:py-2 md:text-base"
+                className="w-max rounded-lg bg-white/5 px-6 py-2 hover:bg-white/10 active:bg-white/20 md:px-6 md:py-2 md:text-base"
               >
                 <ArrowLeft className="transition-transform group-hover:-translate-x-1" />
                 {t("back")}
