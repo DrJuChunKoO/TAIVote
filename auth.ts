@@ -9,7 +9,7 @@ export const config = {
       issuer: "https://id.worldcoin.org",
       wellKnown: "https://id.worldcoin.org/.well-known/openid-configuration",
       authorization: { params: { scope: "openid" } },
-      clientId: process.env.WLD_CLIENT_ID,
+      clientId: process.env.NEXT_PUBLIC_WLD_CLIENT_ID,
       clientSecret: process.env.WLD_CLIENT_SECRET,
       idToken: true,
       checks: ["state", "nonce", "pkce"],
