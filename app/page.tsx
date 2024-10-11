@@ -9,18 +9,19 @@ export default async function IndexPage() {
       <div className="relative flex-1 overflow-x-auto pt-8">
         <div className="container">
           <Disclaimer />
-          {[4, 8, 9].map((section, index) => (
-            <div key={index}>
-              {Array.from({ length: section }, (_, question) => (
-                <VoteQuestion
-                  section={index + 1}
-                  question={question + 1}
-                  votes={voteResult?.votes as { [key: number]: number }[]}
-                  key={`${question}`}
-                />
-              ))}
-            </div>
-          ))}
+          {voteResult?.votes.length &&
+            [4, 8, 9].map((section, index) => (
+              <div key={index}>
+                {Array.from({ length: section }, (_, question) => (
+                  <VoteQuestion
+                    section={index + 1}
+                    question={question + 1}
+                    votes={voteResult?.votes as { [key: number]: number }[]}
+                    key={`${question}`}
+                  />
+                ))}
+              </div>
+            ))}
         </div>
         <div className="gradient-blur translate-y-3">
           <div></div>
