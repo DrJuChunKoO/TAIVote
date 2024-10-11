@@ -1,13 +1,14 @@
 import { getVoteResult } from "@/services/kv";
 import VoteButton from "./components/vote-button";
 import { VoteQuestion } from "./components/question";
-
+import Disclaimer from "./components/disclaimer";
 export default async function IndexPage() {
   const voteResult = await getVoteResult();
   return (
     <>
       <div className="relative flex-1 overflow-x-auto pt-8">
         <div className="container">
+          <Disclaimer />
           {[4, 8, 9].map((section, index) => (
             <div key={index}>
               {Array.from({ length: section }, (_, question) => (
