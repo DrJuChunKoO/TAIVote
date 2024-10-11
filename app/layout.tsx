@@ -1,4 +1,5 @@
 import "./globals.css";
+import type { Viewport } from "next";
 import Nav from "./components/nav";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -42,4 +43,7 @@ export default async function RootLayout({
 export const metadata = {
   title: "TAIVote",
   description: "Taiwan AI-policy Vote",
+};
+export const viewport: Viewport = {
+  themeColor: "#252930",
 };
