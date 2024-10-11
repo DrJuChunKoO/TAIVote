@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   }
 }
 
-export async function verifyCloudProof(
+async function verifyCloudProof(
   proof: ISuccessResult,
   app_id: `app_${string}`,
   action: string,
