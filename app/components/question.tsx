@@ -45,7 +45,7 @@ export function VoteQuestion({
 
 function Question({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-4 rounded-xl border border-white/10 p-4 shadow-md transition-all hover:shadow-lg">
+    <div className="mb-4 rounded-xl border border-white/10 p-4 shadow-md">
       <div className="flex flex-col gap-4">{children}</div>
     </div>
   );

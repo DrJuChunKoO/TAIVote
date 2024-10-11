@@ -6,7 +6,7 @@ export default async function IndexPage() {
   const voteResult = await getVoteResult();
   return (
     <>
-      <div className="relative flex-1 overflow-x-auto pt-8">
+      <div className="no-scrollbar relative flex-1 overflow-x-auto pt-8">
         <div className="container">
           <Disclaimer />
           {voteResult.count > 0 &&
@@ -32,6 +32,7 @@ export default async function IndexPage() {
           <div></div>
         </div>
       </div>
+
       <VoteButton />
     </>
   );
