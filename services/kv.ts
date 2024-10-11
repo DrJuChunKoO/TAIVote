@@ -57,14 +57,15 @@ async function vote(userId: string, query: number[]) {
 
 // get vote result
 async function getVoteResult() {
+  const emptyState = {
+    votes: Array.from({ length: totalQuesions }, () => ({})),
+    count: 0,
+  };
   try {
-    return await kv.get<TotalVotes>(`total_votes`);
+    return (await kv.get<TotalVotes>(`total_votes`)) || emptyState;
   } catch (error) {
     console.error("Error getting vote result:", error);
-    return {
-      votes: Array.from({ length: totalQuesions }, () => ({})),
-      count: 0,
-    };
+    return emptyState;
   }
 }
 
