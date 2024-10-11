@@ -6,7 +6,7 @@ Taiwan AI-policy Vote
 
 ## Development
 
-- create a `.env.local` file with the content of `.env.example`
+- Create a `.env.local` file with the content of `.env.example`
 
 ```bash
 pnpm i
