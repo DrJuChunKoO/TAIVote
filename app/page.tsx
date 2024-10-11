@@ -9,7 +9,7 @@ export default async function IndexPage() {
       <div className="relative flex-1 overflow-x-auto pt-8">
         <div className="container">
           <Disclaimer />
-          {voteResult?.votes.length &&
+          {voteResult!.count > 1 &&
             [4, 8, 9].map((section, index) => (
               <div key={index}>
                 {Array.from({ length: section }, (_, question) => (
