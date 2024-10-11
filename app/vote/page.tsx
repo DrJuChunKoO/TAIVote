@@ -1,4 +1,5 @@
 "use client";
+import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -48,32 +49,6 @@ export default function Page() {
   })();
   const totalQuesions = sectionLimits.reduce((acc, x) => acc + x, 0);
 
-  async function submitVote() {
-    try {
-      setIsLoading(true);
-      const res = await fetch("/api/vote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(result),
-      });
-      if (res.status === 200) {
-        setStep(3);
-      } else {
-        const data = await res.json();
-        if (data.error === "User is already voted") {
-          alert("You have already voted.");
-        } else {
-          alert("Vote sending failed, please try again later");
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setIsLoading(false);
-    }
-  }
   function nextQuestion() {
     setDirection(1);
     const currentLimit = sectionLimits[section - 1];
@@ -133,6 +108,41 @@ export default function Page() {
         scale: 0.9,
       };
     },
+  };
+
+  // TODO: Calls your implemented server route
+
+  const handleVerify = async (proof: object) => {
+    setIsLoading(true);
+    try {
+      setIsLoading(true);
+      const res = await fetch("/api/vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ result, proof }),
+      });
+      if (res.status === 200) {
+        setStep(3);
+      } else {
+        const data = await res.json();
+        if (data.error === "User is already voted") {
+          alert("You have already voted.");
+        } else {
+          alert("Vote sending failed, please try again later");
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // TODO: Functionality after verifying
+  const onSuccess = () => {
+    console.log("Success");
   };
   return (
     <>
@@ -300,10 +310,22 @@ export default function Page() {
                   <Loader className="animate-spin" />
                 </Button>
               ) : (
-                <Button color="blue" onClick={() => submitVote()}>
-                  {t("submit")}
-                  <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                </Button>
+                <IDKitWidget
+                  app_id={
+                    process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`
+                  } // obtained from the Developer Portal
+                  action="vote" // this is your action id from the Developer Portal
+                  onSuccess={onSuccess} // callback when the modal is closed
+                  handleVerify={handleVerify} // optional callback when the proof is received
+                  verification_level={VerificationLevel.Device}
+                >
+                  {({ open }) => (
+                    <Button color="blue" onClick={open}>
+                      {t("submit")}
+                      <ArrowRight className="transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  )}
+                </IDKitWidget>
               ))}
             {step === 3 && (
               <Button color="blue" onClick={() => router.push("/")}>
