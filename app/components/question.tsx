@@ -1,31 +1,22 @@
 "use client";
 import { twMerge } from "tailwind-merge";
 import { useTranslations } from "next-intl";
-function getQuestionIndex(section: number, question: number) {
-  const sectionLimits = [4, 8, 9];
-  if (section === 1) return question;
-  if (section === 2) return question + sectionLimits[0];
-  if (section === 3) return question + sectionLimits[0] + sectionLimits[1];
-  return 0;
-}
 export function VoteQuestion({
-  section,
   question,
   votes,
 }: {
-  section: number;
   question: number;
   votes: {
     [key: number]: number;
   }[];
 }) {
   const t = useTranslations("questions");
-  const questionTitle = t(`section${section}.question${question}`);
-  const options = t.raw(`section${section}.options${question}`);
-  const questionIndex = getQuestionIndex(section, question);
-  const totalVotes = votes[questionIndex - 1]
-    ? Object.values(votes[questionIndex - 1]).reduce((acc, x) => acc + x, 0)
+  const questionTitle = t(`questions.question${question}.question`);
+  const options = t.raw(`questions.question${question}.options`);
+  const totalVotes = votes[question - 1]
+    ? Object.values(votes[question - 1]).reduce((acc, x) => acc + x, 0)
     : 0;
+
   return (
     <Question>
       <QuestionTitle>{questionTitle}</QuestionTitle>
@@ -34,7 +25,7 @@ export function VoteQuestion({
           text={option}
           key={index}
           percentage={
-            ((votes[questionIndex - 1]?.[index + 1] || 0) / totalVotes) * 100
+            ((votes[question - 1]?.[index + 1] || 0) / totalVotes) * 100
           }
           index={index}
         />

@@ -10,17 +10,12 @@ export default async function IndexPage() {
         <div className="container">
           <Disclaimer />
           {voteResult.count > 0 &&
-            [4, 8, 9].map((section, index) => (
-              <div key={index}>
-                {Array.from({ length: section }, (_, question) => (
-                  <VoteQuestion
-                    section={index + 1}
-                    question={question + 1}
-                    votes={voteResult?.votes as { [key: number]: number }[]}
-                    key={`${question}`}
-                  />
-                ))}
-              </div>
+            Array.from({ length: 6 }, (_, index) => (
+              <VoteQuestion
+                question={index + 1}
+                votes={voteResult?.votes as { [key: number]: number }[]}
+                key={index}
+              />
             ))}
         </div>
         <div className="gradient-blur translate-y-3">
@@ -32,7 +27,6 @@ export default async function IndexPage() {
           <div></div>
         </div>
       </div>
-
       <VoteButton />
     </>
   );

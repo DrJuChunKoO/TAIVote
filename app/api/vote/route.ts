@@ -4,26 +4,23 @@ import { vote, checkVotedUserId } from "@/services/kv";
 import { type IVerifyResponse, type ISuccessResult } from "@worldcoin/idkit";
 
 export async function POST(request: Request) {
-  const sectionLimits = [4, 8, 9];
-  const totalQuesions = sectionLimits.reduce((acc, x) => acc + x, 0);
-
   const { result, proof } = await request.json();
 
   const session = await getServerSession(config);
   if (session && session.user) {
     const userId = session.user.name!;
-    const voteQuery = [...result[0], ...result[1], ...result[2]];
-    if (voteQuery.length !== totalQuesions) {
+    const voteQuery = result;
+    if (voteQuery.length !== 6) {
       throw new Error("Invalid query length");
     }
     // check zk proof
     const app_id = process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`;
-    const action = "vote";
+    const action = "taivote";
 
     const verifyRes = await verifyCloudProof(proof, app_id, action);
     // check db id
     const hasVoted = await checkVotedUserId(userId);
-
+    console.log(verifyRes, hasVoted);
     // send voted error
     if (hasVoted || !verifyRes.success) {
       return new Response(
