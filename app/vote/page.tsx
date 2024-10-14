@@ -24,6 +24,7 @@ export default function Page() {
   // 0: Main screen
   // 1: Questions
   // 2: Submit screen
+  // 3: Done screen
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [section, setSection] = useState(1);
