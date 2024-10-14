@@ -47,6 +47,10 @@ export default function Page() {
 
   function prevQuestion() {
     setDirection(-1);
+    if (question === 6 && step === 2) {
+      setStep(1);
+      return;
+    }
     if (question > 1) {
       setQuestion(question - 1);
     }
