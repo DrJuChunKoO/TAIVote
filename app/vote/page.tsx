@@ -1,4 +1,5 @@
 "use client";
+import { useLocalStorage } from "usehooks-ts";
 import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
@@ -25,11 +26,15 @@ export default function Page() {
   // 1: Questions
   // 2: Submit screen
   // 3: Done screen
-  const [step, setStep] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [question, setQuestion] = useState(1);
+  const [step, setStep] = useLocalStorage("step", 0);
+  const [question, setQuestion] = useLocalStorage("question", 1);
+  const [result, setResult] = useLocalStorage(
+    "result",
+    Array.from({ length: 6 }, () => 0),
+  );
+
   const [direction, setDirection] = useState(1);
-  const [result, setResult] = useState(Array.from({ length: 6 }, () => 0));
+  const [isLoading, setIsLoading] = useState(false);
 
   function nextQuestion() {
     setDirection(1);
