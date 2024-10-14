@@ -117,7 +117,7 @@ export default function Page() {
             <div
               className={twMerge(
                 "transition-opacity",
-                question > 1 && "pointer-events-none opacity-0",
+                question <= 1 && "pointer-events-none opacity-0",
               )}
             >
               <Button
