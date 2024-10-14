@@ -3,7 +3,8 @@
     "vote": "投票",
     "subtitle": "台湾 AI 政策投票",
     "sign_in_with_worldid": "Worldcoin でログイン",
-    "disclaimer": "このプラットフォームは現在テスト版であり、質問や意見の収集は参考用のみで、実際の立法とは関係ありません。"
+    "disclaimer": "このプラットフォームは現在テスト版であり、質問や意見の収集は参考用のみで、実際の立法とは関係ありません。",
+    "require_orb": "投票には Orb で認証された World ID が必要です"
   },
   "questions": {
     "title": "TAIVote: 台湾 AI 政策投票",

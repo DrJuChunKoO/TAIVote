@@ -71,6 +71,15 @@ export default function VoteButton() {
                 >
                   {t("sign_in_with_worldid")}
                 </Button>
+                <motion.div
+                  className="mt-2 text-center text-sm text-white/50"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  {t("require_orb")}
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>

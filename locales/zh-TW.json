@@ -3,7 +3,8 @@
     "vote": "投票",
     "subtitle": "台灣 AI 政策投票",
     "sign_in_with_worldid": "使用 World ID 登入",
-    "disclaimer": "本平台目前為測試版，提問與意見之蒐集僅供參考，與實際立法暫無關聯。"
+    "disclaimer": "本平台目前為測試版，提問與意見之蒐集僅供參考，與實際立法暫無關聯。",
+    "require_orb": "投票需要經 Orb 認證過的 World ID"
   },
   "questions": {
     "title": "TAIVote: Taiwan AI-policy Vote",

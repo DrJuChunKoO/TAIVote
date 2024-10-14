@@ -3,7 +3,8 @@
     "vote": "Vote",
     "subtitle": "Taiwan AI Policy Vote",
     "sign_in_with_worldid": "Sign in with World ID",
-    "disclaimer": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to actual legislation."
+    "disclaimer": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to actual legislation.",
+    "require_orb": "Voting requires a World ID verified by Orb"
   },
   "questions": {
     "title": "TAIVote: Taiwan AI Policy Vote",
