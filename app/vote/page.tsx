@@ -27,40 +27,14 @@ export default function Page() {
   // 3: Done screen
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [section, setSection] = useState(1);
   const [question, setQuestion] = useState(1);
   const [direction, setDirection] = useState(1);
-  const [result, setResult] = useState([
-    Array.from({ length: 4 }, () => 0),
-    Array.from({ length: 8 }, () => 0),
-    Array.from({ length: 9 }, () => 0),
-  ]);
-  const sectionLimits = [4, 8, 9];
-  const progress = (() => {
-    switch (section) {
-      case 1:
-        return question;
-      case 2:
-        return question + 4;
-      case 3:
-        return question + 12;
-      default:
-        return 0;
-    }
-  })();
-  const totalQuesions = sectionLimits.reduce((acc, x) => acc + x, 0);
+  const [result, setResult] = useState(Array.from({ length: 6 }, () => 0));
 
   function nextQuestion() {
     setDirection(1);
-    const currentLimit = sectionLimits[section - 1];
-
-    if (question === currentLimit) {
-      if (section < 3) {
-        setSection(section + 1);
-        setQuestion(1);
-      } else {
-        setStep(2);
-      }
+    if (question === 6) {
+      setStep(2);
     } else {
       setQuestion(question + 1);
     }
@@ -68,21 +42,13 @@ export default function Page() {
 
   function prevQuestion() {
     setDirection(-1);
-    if (step === 2) {
-      return setStep(1);
-    }
-    if (question === 1) {
-      if (section > 1) {
-        setSection(section - 1);
-        setQuestion(sectionLimits[section - 2]);
-      }
-    } else {
+    if (question > 1) {
       setQuestion(question - 1);
     }
   }
   function setCurrentAnswer(answer: number) {
     setResult((res) => {
-      res[section - 1][question - 1] = answer;
+      res[question - 1] = answer;
       return res;
     });
     nextQuestion();
@@ -110,8 +76,6 @@ export default function Page() {
       };
     },
   };
-
-  // TODO: Calls your implemented server route
 
   const handleVerify = async (proof: object) => {
     setIsLoading(true);
@@ -153,7 +117,7 @@ export default function Page() {
             <div
               className={twMerge(
                 "transition-opacity",
-                progress === 1 && "pointer-events-none opacity-0",
+                question > 1 && "pointer-events-none opacity-0",
               )}
             >
               <Button
@@ -166,14 +130,12 @@ export default function Page() {
               </Button>
             </div>
             <div>
-              <div className="mb-1 text-right">
-                {progress} / {totalQuesions}
-              </div>
+              <div className="mb-1 text-right">{question} / 6</div>
               <div className="h-1 w-40 overflow-hidden rounded-full bg-gray-500">
                 <div
                   className="glass-effect h-1 rounded-full bg-white/50 transition-all"
                   style={{
-                    width: `${(progress / totalQuesions) * 100}%`,
+                    width: `${(question / 6) * 100}%`,
                   }}
                 />
               </div>
@@ -202,23 +164,20 @@ export default function Page() {
           )}
           {step === 1 && (
             <motion.div
-              className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-noise shadow-md"
-              key={`${section}-${question}`}
+              className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-noise shadow-md"
+              key={question}
               variants={variants}
               custom={direction}
               initial="enter"
               animate="center"
               exit="exit"
             >
-              <div className="bg-black/10 px-6 py-3 font-normal tracking-tight text-opacity-75">
-                {t(`section${section}.title`)}
-              </div>
               <div className="flex h-full flex-1 flex-col gap-2 p-6">
                 <div className="text-2xl font-semibold leading-[1.5em]">
-                  {t(`section${section}.question${question}`)}
+                  {t(`questions.question${question}.question`)}
                 </div>
               </div>
-              <div className="flex justify-end p-6 text-white opacity-20">
+              <div className="absolute bottom-0 right-0 flex justify-end p-6 text-white opacity-20">
                 <Bot size={72} />
               </div>
             </motion.div>
@@ -275,18 +234,15 @@ export default function Page() {
             )}
             {step === 1 &&
               t
-                .raw(`section${section}.options${question}`)
+                .raw(`questions.question${question}.options`)
                 .map((option: string, index: number) => {
                   let color = "blue";
                   if (
-                    ["反對", "否", "いいえ", "反対", "Oppose", "No"].includes(
-                      option,
+                    ["否", "いいえ", "No"].some((x) =>
+                      option.match(new RegExp(x, "i")),
                     )
                   ) {
                     color = "red";
-                  }
-                  if (["沒意見", "意見なし", "No Opinion"].includes(option)) {
-                    color = "teal";
                   }
 
                   return (
@@ -294,7 +250,7 @@ export default function Page() {
                       color={color}
                       onClick={() => setCurrentAnswer(index + 1)}
                       className={twMerge(
-                        result[section - 1][question - 1] === index + 1 &&
+                        result[question - 1] === index + 1 &&
                           "outline-none ring-2 ring-blue-400 ring-offset-2 ring-offset-[#282C33]",
                         color === `red` && "ring-red-400",
                         color === `teal` && "ring-teal-400",
@@ -315,10 +271,10 @@ export default function Page() {
                   app_id={
                     process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`
                   } // obtained from the Developer Portal
-                  action="vote" // this is your action id from the Developer Portal
+                  action="taivote" // this is your action id from the Developer Portal
                   onSuccess={onSuccess} // callback when the modal is closed
                   handleVerify={handleVerify} // optional callback when the proof is received
-                  verification_level={VerificationLevel.Device}
+                  verification_level={VerificationLevel.Orb}
                 >
                   {({ open }) => (
                     <Button color="blue" onClick={open}>
