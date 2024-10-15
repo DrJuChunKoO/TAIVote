@@ -41,6 +41,7 @@ export const metadata: Metadata = {
   title: "TAIVote",
   description: "Taiwan AI-policy Vote",
   openGraph: {
+    siteName: "TAIVote",
     title: "TAIVote",
     description: "Taiwan AI-policy Vote",
     url: "https://taivote.juchunko.com/",
