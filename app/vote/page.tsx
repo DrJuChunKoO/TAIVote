@@ -2,11 +2,9 @@
 import { useLocalStorage } from "usehooks-ts";
 import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import VoteButton from "../components/vote-button";
-import Button from "../components/button";
+import Button from "@/app/components/button";
 import {
   Vote,
   ArrowRight,
@@ -15,13 +13,14 @@ import {
   Bot,
   Send,
   Loader,
+  CircleAlert,
 } from "lucide-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 export default function Page() {
   const router = useRouter();
   const t = useTranslations("questions");
-  const { data } = useSession();
+
   // 0: Main screen
   // 1: Questions
   // 2: Submit screen
@@ -49,6 +48,10 @@ export default function Page() {
     setDirection(-1);
     if (question === 6 && step === 2) {
       setStep(1);
+      return;
+    }
+    if (question === 1) {
+      setStep(0);
       return;
     }
     if (question > 1) {
@@ -103,6 +106,8 @@ export default function Page() {
         const data = await res.json();
         if (data.error === "User is already voted") {
           alert("You have already voted.");
+        } else if (data.error === "User needs to verify by Orb") {
+          alert("You need to verify your World ID with an Orb");
         } else {
           alert("Vote sending failed, please try again later");
         }
@@ -123,12 +128,7 @@ export default function Page() {
       <div className="container flex flex-1 flex-col gap-2 pb-2 pt-4">
         {(step === 1 || step === 2) && (
           <div className="flex items-center justify-between gap-2">
-            <div
-              className={twMerge(
-                "transition-opacity",
-                question <= 1 && "pointer-events-none opacity-0",
-              )}
-            >
+            <div className={twMerge("transition-opacity")}>
               <Button
                 color="stone"
                 onClick={() => prevQuestion()}
@@ -163,11 +163,26 @@ export default function Page() {
               exit="exit"
             >
               <div className="flex h-full flex-col justify-center gap-2">
+                <div className="md:flex-1" />
                 <Vote size={72} />
                 <div className="text-3xl font-bold">{t("title")}</div>
-                <div className="text-lg leading-[1.5em] opacity-75">
+                <div className="text-lg leading-[1.5em] opacity-75 max-md:flex-1">
                   {t("description")}
                 </div>
+                <div className="md:flex-1" />
+                <AnimatePresence>
+                  <motion.div
+                    className="glass-effect flex gap-4 rounded-md bg-white/5 p-4 md:mt-10"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 0.5,
+                    }}
+                  >
+                    <CircleAlert />
+                    {t("require_orb")}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </motion.div>
           )}
@@ -231,77 +246,81 @@ export default function Page() {
           )}
         </AnimatePresence>
       </div>
-      {!data && <VoteButton />}
-      {data && (
-        <div className="container pb-4">
-          <div className="flex flex-col gap-2">
-            {step === 0 && (
-              <Button color="blue" onClick={() => setStep(1)}>
-                {t("continue")}
-                <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </Button>
-            )}
-            {step === 1 &&
-              t
-                .raw(`questions.question${question}.options`)
-                .map((option: string, index: number) => {
-                  let color = "blue";
-                  if (
-                    ["否", "いいえ", "No"].some((x) =>
-                      option.match(new RegExp(x, "i")),
-                    )
-                  ) {
-                    color = "red";
-                  }
 
-                  return (
-                    <Button
-                      color={color}
-                      onClick={() => setCurrentAnswer(index + 1)}
-                      className={twMerge(
-                        result[question - 1] === index + 1 &&
-                          "outline-none ring-2 ring-blue-400 ring-offset-2 ring-offset-[#282C33]",
-                        color === `red` && "ring-red-400",
-                        color === `teal` && "ring-teal-400",
-                      )}
-                      key={index}
-                    >
-                      {option}
-                    </Button>
-                  );
-                })}
-            {step === 2 &&
-              (isLoading ? (
-                <Button color="teal" onClick={() => {}}>
-                  <Loader className="animate-spin" />
-                </Button>
-              ) : (
-                <IDKitWidget
-                  app_id={
-                    process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`
-                  } // obtained from the Developer Portal
-                  action="taivote" // this is your action id from the Developer Portal
-                  onSuccess={onSuccess} // callback when the modal is closed
-                  handleVerify={handleVerify} // optional callback when the proof is received
-                  verification_level={VerificationLevel.Orb}
-                >
-                  {({ open }) => (
-                    <Button color="blue" onClick={open}>
-                      {t("submit")}
-                      <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  )}
-                </IDKitWidget>
-              ))}
-            {step === 3 && (
-              <Button color="blue" onClick={() => router.push("/")}>
-                {t("view_result")}
-                <ArrowRight className="transition-transform group-hover:translate-x-1" />
+      <div className="container pb-4">
+        <div className="flex flex-col gap-2">
+          {step === 0 && (
+            <Button
+              color="blue"
+              onClick={() => {
+                setDirection(1);
+                setStep(1);
+              }}
+            >
+              {t("continue")}
+              <ArrowRight className="transition-transform group-hover:translate-x-1" />
+            </Button>
+          )}
+          {step === 1 &&
+            t
+              .raw(`questions.question${question}.options`)
+              .map((option: string, index: number) => {
+                let color = "blue";
+                if (
+                  ["否", "いいえ", "No"].some((x) =>
+                    option.match(new RegExp(x, "i")),
+                  )
+                ) {
+                  color = "red";
+                }
+
+                return (
+                  <Button
+                    color={color}
+                    onClick={() => setCurrentAnswer(index + 1)}
+                    className={twMerge(
+                      result[question - 1] === index + 1 &&
+                        "outline-none ring-2 ring-blue-400 ring-offset-2 ring-offset-[#282C33]",
+                      color === `red` && "ring-red-400",
+                      color === `teal` && "ring-teal-400",
+                    )}
+                    key={index}
+                  >
+                    {option}
+                  </Button>
+                );
+              })}
+          {step === 2 &&
+            (isLoading ? (
+              <Button color="teal" onClick={() => {}}>
+                <Loader className="animate-spin" />
               </Button>
-            )}
-          </div>
+            ) : (
+              <IDKitWidget
+                app_id={
+                  process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`
+                } // obtained from the Developer Portal
+                action="taivote" // this is your action id from the Developer Portal
+                onSuccess={onSuccess} // callback when the modal is closed
+                handleVerify={handleVerify} // optional callback when the proof is received
+                verification_level={VerificationLevel.Orb}
+              >
+                {({ open }) => (
+                  <Button color="blue" onClick={open}>
+                    {t("submit")}
+                    <ArrowRight className="transition-transform group-hover:translate-x-1" />
+                  </Button>
+                )}
+              </IDKitWidget>
+            ))}
+          {step === 3 && (
+            <Button color="blue" onClick={() => router.push("/")}>
+              {t("view_result")}
+              <ArrowRight className="transition-transform group-hover:translate-x-1" />
+            </Button>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 }
