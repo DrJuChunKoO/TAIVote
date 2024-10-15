@@ -55,8 +55,8 @@ function Option({
   index?: number;
 }) {
   const colors = [
-    "bg-gradient-to-b from-red-500 to-red-600",
     "bg-gradient-to-b from-blue-500 to-blue-600",
+    "bg-gradient-to-b from-red-500 to-red-600",
     "bg-gradient-to-b from-green-500 to-green-600",
     "bg-gradient-to-b from-yellow-500 to-yellow-600",
     "bg-gradient-to-b from-purple-500 to-pink-500",
