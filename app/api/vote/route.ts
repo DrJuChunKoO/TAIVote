@@ -1,25 +1,14 @@
 import { vote } from "@/services/kv";
-import {
-  type IVerifyResponse,
-  type ISuccessResult,
-  VerificationLevel,
-} from "@worldcoin/idkit";
+import { type IVerifyResponse, type ISuccessResult } from "@worldcoin/idkit";
 
 export async function POST(request: Request) {
-  const {
-    result,
-    proof,
-  }: {
-    result: number[];
-    proof: ISuccessResult;
-  } = await request.json();
+  const { result, proof } = await request.json();
 
   const voteQuery = result;
   if (voteQuery.length !== 6) {
     throw new Error("Invalid query length");
   }
-
-  if (proof.verification_level !== VerificationLevel.Orb) {
+  if (proof.verification_level !== "orb") {
     return new Response(
       JSON.stringify({
         success: false,
@@ -37,7 +26,7 @@ export async function POST(request: Request) {
   const verifyRes = await verifyCloudProof(proof, app_id, action);
 
   // send voted error
-  if (!verifyRes.success) {
+  if (!verifyRes.success && verifyRes.code === "max_verifications_reached") {
     return new Response(
       JSON.stringify({ success: false, error: "User is already voted" }),
       {
@@ -45,8 +34,16 @@ export async function POST(request: Request) {
       },
     );
   }
+  if (!verifyRes.success) {
+    return new Response(
+      JSON.stringify({ success: false, error: verifyRes.code }),
+      {
+        status: 500,
+      },
+    );
+  }
 
-  const userId = crypto.randomUUID();
+  const userId = proof.nullifier_hash;
   console.log(`[Vote] ${userId}: ${voteQuery}`);
 
   const voteResult = await vote(userId, voteQuery);
