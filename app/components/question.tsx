@@ -27,6 +27,7 @@ export function VoteQuestion({
           percentage={
             ((votes[question - 1]?.[index + 1] || 0) / totalVotes) * 100
           }
+          votes={votes[question - 1]?.[index + 1] || 0}
           index={index}
         />
       ))}
@@ -49,11 +50,14 @@ function Option({
   text,
   percentage,
   index = 0,
+  votes = 0,
 }: {
   text: string;
   percentage: number;
   index?: number;
+  votes?: number;
 }) {
+  const t = useTranslations("common");
   const colors = [
     "bg-gradient-to-b from-blue-500 to-blue-600",
     "bg-gradient-to-b from-red-500 to-red-600",
@@ -66,7 +70,7 @@ function Option({
     <div>
       <div className="mb-2 flex items-end justify-between">
         <div className="font-medium text-gray-300">{text}</div>
-        <div className="font-mono text-sm text-gray-400">
+        <div className="w-10 text-right font-mono text-gray-400">
           {percentage.toFixed(0)}%
         </div>
       </div>
@@ -78,6 +82,9 @@ function Option({
           )}
           style={{ width: `${percentage}%` }}
         />
+      </div>
+      <div className="mt-2 text-sm font-medium text-gray-400">
+        {votes} {t("votes")}
       </div>
     </div>
   );

@@ -2,7 +2,8 @@
   "common": {
     "vote": "Vote",
     "subtitle": "Taiwan AI Policy Vote",
-    "disclaimer": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to actual legislation."
+    "disclaimer": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to actual legislation.",
+    "votes": "votes"
   },
   "questions": {
     "title": "TAIVote: Taiwan AI Policy Vote",

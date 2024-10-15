@@ -2,7 +2,8 @@
   "common": {
     "vote": "投票",
     "subtitle": "台灣 AI 政策投票",
-    "disclaimer": "本平台目前為測試版，提問與意見之蒐集僅供參考，與實際立法暫無關聯。"
+    "disclaimer": "本平台目前為測試版，提問與意見之蒐集僅供參考，與實際立法暫無關聯。",
+    "votes": "票"
   },
   "questions": {
     "title": "TAIVote: Taiwan AI-policy Vote",
