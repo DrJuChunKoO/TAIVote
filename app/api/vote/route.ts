@@ -1,53 +1,64 @@
-import { getServerSession } from "next-auth";
-import { config } from "@/auth";
-import { vote, checkVotedUserId } from "@/services/kv";
-import { type IVerifyResponse, type ISuccessResult } from "@worldcoin/idkit";
+import { vote } from "@/services/kv";
+import {
+  type IVerifyResponse,
+  type ISuccessResult,
+  VerificationLevel,
+} from "@worldcoin/idkit";
 
 export async function POST(request: Request) {
-  const { result, proof } = await request.json();
+  const {
+    result,
+    proof,
+  }: {
+    result: number[];
+    proof: ISuccessResult;
+  } = await request.json();
 
-  const session = await getServerSession(config);
-  if (session && session.user) {
-    const userId = session.user.name!;
-    const voteQuery = result;
-    if (voteQuery.length !== 6) {
-      throw new Error("Invalid query length");
-    }
-    // check zk proof
-    const app_id = process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`;
-    const action = "taivote";
+  const voteQuery = result;
+  if (voteQuery.length !== 6) {
+    throw new Error("Invalid query length");
+  }
 
-    const verifyRes = await verifyCloudProof(proof, app_id, action);
-    // check db id
-    const hasVoted = await checkVotedUserId(userId);
-    console.log(verifyRes, hasVoted);
-    // send voted error
-    if (hasVoted || !verifyRes.success) {
-      return new Response(
-        JSON.stringify({ success: false, error: "User is already voted" }),
-        {
-          status: 400,
-        },
-      );
-    }
+  if (proof.verification_level !== VerificationLevel.Orb) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: "User needs to verify by Orb",
+      }),
+      {
+        status: 400,
+      },
+    );
+  }
 
-    console.log(`[Vote] ${userId}: ${voteQuery}`);
+  // check zk proof
+  const app_id = process.env.NEXT_PUBLIC_WLD_CLIENT_ID as `app_${string}`;
+  const action = "taivote";
+  const verifyRes = await verifyCloudProof(proof, app_id, action);
 
-    const voteResult = await vote(userId, voteQuery);
-    if (voteResult) {
-      return new Response(JSON.stringify({ success: true, error: null }));
-    } else {
-      return new Response(
-        JSON.stringify({ success: false, error: "Failed to vote" }),
-        {
-          status: 400,
-        },
-      );
-    }
+  // send voted error
+  if (!verifyRes.success) {
+    return new Response(
+      JSON.stringify({ success: false, error: "User is already voted" }),
+      {
+        status: 400,
+      },
+    );
+  }
+
+  const userId = crypto.randomUUID();
+  console.log(`[Vote] ${userId}: ${voteQuery}`);
+
+  const voteResult = await vote(userId, voteQuery);
+  if (voteResult) {
+    return new Response(JSON.stringify({ success: true, error: null }));
   } else {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-    });
+    return new Response(
+      JSON.stringify({ success: false, error: "Failed to vote" }),
+      {
+        status: 400,
+      },
+    );
   }
 }
 

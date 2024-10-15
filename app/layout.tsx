@@ -3,7 +3,6 @@ import type { Viewport } from "next";
 import Nav from "./components/nav";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import SessionProvider from "./components/session-provider";
 import AutoSetLang from "./components/auto-set-lang";
 export default async function RootLayout({
   children,
@@ -28,14 +27,12 @@ export default async function RootLayout({
         />
       </head>
       <body className="flex h-[100svh] flex-col bg-[#282C33] font-sans text-[#C8CCD4]">
-        <SessionProvider>
-          <NextIntlClientProvider messages={messages}>
-            <AutoSetLang>
-              <Nav />
-              {children}
-            </AutoSetLang>
-          </NextIntlClientProvider>
-        </SessionProvider>
+        <NextIntlClientProvider messages={messages}>
+          <AutoSetLang>
+            <Nav />
+            {children}
+          </AutoSetLang>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

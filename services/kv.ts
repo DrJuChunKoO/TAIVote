@@ -1,29 +1,9 @@
 import { kv } from "@vercel/kv";
-const sectionLimits = [4, 8, 9];
-const totalQuesions = sectionLimits.reduce((acc, x) => acc + x, 0);
+
+const totalQuesions = 6;
 interface TotalVotes {
   votes: { [key: number]: number }[];
   count: number;
-}
-
-// set voted user id
-async function setVotedUserId(userId: string) {
-  try {
-    await kv.sadd("voted_users", userId);
-  } catch (error) {
-    console.error("Error setting voted user ID:", error);
-  }
-}
-
-// check if user has voted
-async function checkVotedUserId(userId: string) {
-  try {
-    const hasVoted = await kv.sismember("voted_users", userId);
-    return hasVoted === 1;
-  } catch (error) {
-    console.error("Error checking if user has voted:", error);
-    return false;
-  }
 }
 
 // vote
@@ -44,9 +24,6 @@ async function vote(userId: string, query: number[]) {
       totalVotes.votes[i][query[i]]++;
     }
     await kv.set(`total_votes`, totalVotes);
-
-    // Mark user as voted
-    await setVotedUserId(userId);
 
     return true;
   } catch (error) {
@@ -69,4 +46,4 @@ async function getVoteResult() {
   }
 }
 
-export { setVotedUserId, checkVotedUserId, vote, getVoteResult };
+export { vote, getVoteResult };
