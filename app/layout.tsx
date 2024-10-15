@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Viewport } from "next";
+import type { Viewport, Metadata } from "next";
 import Nav from "./components/nav";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -37,9 +37,35 @@ export default async function RootLayout({
     </html>
   );
 }
-export const metadata = {
+export const metadata: Metadata = {
   title: "TAIVote",
   description: "Taiwan AI-policy Vote",
+  openGraph: {
+    title: "TAIVote",
+    description: "Taiwan AI-policy Vote",
+    url: "https://taivote.juchunko.com/",
+    images: [
+      {
+        url: "https://taivote.juchunko.com/images/og.jpeg",
+        width: 3840,
+        height: 2160,
+        alt: "TAIVote",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TAIVote",
+    description: "Taiwan AI-policy Vote",
+    images: [
+      {
+        url: "https://taivote.juchunko.com/images/og.jpeg",
+        width: 3840,
+        height: 2160,
+        alt: "TAIVote",
+      },
+    ],
+  },
 };
 export const viewport: Viewport = {
   themeColor: "#252930",
