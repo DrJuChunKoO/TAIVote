@@ -2,6 +2,7 @@ import { getVoteResult } from "@/services/kv";
 import VoteButton from "./components/vote-button";
 import { VoteQuestion } from "./components/question";
 import Disclaimer from "./components/disclaimer";
+import Footer from "./components/footer";
 export default async function IndexPage() {
   const voteResult = await getVoteResult();
   return (
@@ -18,7 +19,8 @@ export default async function IndexPage() {
               />
             ))}
         </div>
-        <div className="gradient-blur translate-y-3">
+        <Footer />
+        <div className="gradient-blur -my-4 translate-y-3">
           <div></div>
           <div></div>
           <div></div>
