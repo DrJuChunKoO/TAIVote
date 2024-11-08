@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="group text-center text-sm text-white text-opacity-50 transition-opacity">
         Support by{" "}
         <TipText tip="Emerging Technology Exchange Association">ETEA</TipText>{" "}
-        in partnership with <TipText tip="Tools for Humanity">THF</TipText>
+        in partnership with <TipText tip="Tools for Humanity">TFH</TipText>
       </div>
     </footer>
   );
