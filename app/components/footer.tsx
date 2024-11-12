@@ -9,7 +9,7 @@ export default function Footer() {
         in partnership with{" "}
         <TipText tip="Tools for Humanity">
           <a
-            href="https://toolsforhumanity.org/"
+            href="https://toolsforhumanity.com/"
             target="_blank"
             rel="noreferrer"
           >
