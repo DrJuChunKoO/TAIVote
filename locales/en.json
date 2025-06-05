@@ -2,7 +2,9 @@
   "common": {
     "vote": "Vote",
     "subtitle": "Taiwan AI Policy Vote",
-    "disclaimer": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to actual legislation.",
+    "disclaimer_before": "This platform is currently in beta version, and the collection of questions and opinions is for reference only and not related to ",
+    "disclaimer_link": "actual legislation",
+    "disclaimer_after": ".",
     "votes": "votes"
   },
   "questions": {
@@ -30,23 +32,38 @@
       },
       "question2": {
         "question": "Do you support restricting AI from replacing human jobs?",
-        "options": ["Yes, I support", "No, I do not support"]
+        "options": [
+          "Yes, I support",
+          "No, I do not support"
+        ]
       },
       "question3": {
-        "question": "Do you support the Ministry of Education allocating an 'AI Equality' budget to fund AI-related training courses and paid software usage for teachers and students at all educational levels?",
-        "options": ["Yes", "No"]
+        "question": "Do you support the Taiwanese government allocating an 'AI Equality' budget to fund AI-related training courses and paid software usage for teachers and students at all educational levels?",
+        "options": [
+          "Yes",
+          "No"
+        ]
       },
       "question4": {
         "question": "Do you support the Taiwanese government amending copyright laws, as Japan has done, to allow generative AI models to use any Taiwanese copyrighted content (such as text, images, and videos) for training without authorization from copyright holders?",
-        "options": ["Yes, I support", "No, I do not support"]
+        "options": [
+          "Yes, I support",
+          "No, I do not support"
+        ]
       },
       "question5": {
         "question": "Do you support the Taiwanese government making the development mechanisms, budgets, and processes of 'Sovereign AI' transparent, and actively incorporating public participation and external verification?",
-        "options": ["Yes, I support", "No, I do not support"]
+        "options": [
+          "Yes, I support",
+          "No, I do not support"
+        ]
       },
       "question6": {
         "question": "Do you support Taiwan participating in the establishment of an international AI development transparency organization to help all countries jointly address and manage AI development safety issues?",
-        "options": ["Yes, I support", "No, I do not support"]
+        "options": [
+          "Yes, I support",
+          "No, I do not support"
+        ]
       }
     }
   }
