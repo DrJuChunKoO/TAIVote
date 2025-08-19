@@ -7,6 +7,26 @@
     "disclaimer_after": ".",
     "votes": "votes"
   },
+  "introduction": {
+    "section1": {
+      "title": "Why TAIVote?",
+      "content": "Just as Taiwan's semiconductors have influenced the global AI technology development, this 'technology island' is now nurturing an epoch-making 'Taiwan Model' AI governance.\nWe believe that the AI Basic Law should be 'human-centered for all humanity.'\nTherefore, we have partnered exclusively with World to utilize the most advanced technology to create TAIVote, collecting opinions from 'real humans' across countries as one of the important references for Taiwan's AI Basic Law formulation. This ensures that this important legislation, which could influence the world, incorporates authentic global public opinion while being forward-looking and innovative."
+    },
+    "section2": {
+      "title": "Why TAIVote unique?",
+      "content": "TAIVote is the first application of the World API for national-level legislation and public policy governance since its public release. The Legislative Yuan of the Republic of China (Taiwan) is the world's first parliament to utilize the most advanced information technology to collect public opinions.\nTaiwan's AI Basic Law will proceed to inter-party negotiations and three readings, and opinions from TAIVote will serve as one of the important references for negotiations, making every vote in TAIVote highly significant.\nTaiwan's AI Basic Law will become the world's first digital governance law that can ensure opinions are '100% from real humans' and guarantee 'one person, one vote, equal value for all votes,' unaffected by fake bot accounts, thanks to TAIVote. We believe Taiwan's innovative legislative experience and emerging technology application can provide international reference."
+    },
+    "section3": {
+      "title": "Technical Support",
+      "content": "Jointly developed by the Legislative Yuan Technology Exchange Association (ETEA) and World"
+    },
+    "section4": {
+      "title": "Taiwan's AI Basic Law",
+      "content": "Taiwan's AI Basic Law is currently under review in the Legislative Yuan and has not yet been officially passed. You can learn more about the detailed legislative process and related information through the following link.",
+      "link_text": "View Legislative Process",
+      "link_url": "https://juchunko.com/docs/act/ai-basic-act"
+    }
+  },
   "questions": {
     "title": "TAIVote: Taiwan AI Policy Vote",
     "description": "Welcome to 'TAIVote: Taiwan AI Policy Vote.' Please answer the following questions based on your thoughts. Your opinions will help shape a more representative AI Basic Law. Together, we can work towards a better Taiwan. Thank you for your participation!",

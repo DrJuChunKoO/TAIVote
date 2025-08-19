@@ -7,6 +7,26 @@
     "disclaimer_after": " 暫無關聯。",
     "votes": "票"
   },
+  "introduction": {
+    "section1": {
+      "title": "為什麼要有 TAIVote？",
+      "content": "就像台灣的半導體影響了全世界的 AI 科技進程，這座「科技之島」現在正在孕育劃時代的「台灣模式」AI 法治。\n我們相信，AI 基本法應該要「以全人類為本」。\n因此我們與 World 獨家合作，運用最先進的技術打造 TAIVote，搜集來自各國的「真實人類」意見，並作為台灣 AI 基本法制定的重要參考之一。確保這部足以影響世界的重要法案具備來自全球的真實民意，同時也具備前瞻性、開創性。"
+    },
+    "section2": {
+      "title": "TAIVote 的特別之處",
+      "content": "TAIVote 是 World API 對外開放以來，第一次被應用在國家層級的立法與公共政策治理。中華民國（台灣）的立法院更是全世界第一個利用最先進的資訊科技力量來搜集公眾意見的國會。\n台灣的 AI 基本法接下來將進行黨團協商、條文三讀，並會將 TAIVote 中的意見作為協商的重要參考之一，因此 TAIVote 中的每一票都意義重大。\n台灣的 AI 基本法將因為 TAIVote，成為全世界第一部可以確保意見「100%來自真人」，且可以確保「一人一票、票票等值」、不受假的機器帳號影響的數位治理法律。我們相信，本次台灣創新的立法經驗及新興科技運用可以提供國際借鏡。"
+    },
+    "section3": {
+      "title": "技術支持",
+      "content": "立法院先進科技交流協會（ETEA）與 World 共同合作開發"
+    },
+    "section4": {
+      "title": "台灣的 AI 基本法",
+      "content": "台灣的 AI 基本法目前正在立法院審議中，尚未正式通過。您可以透過以下連結了解詳細的立法進程與相關資訊。",
+      "link_text": "查看立法進程",
+      "link_url": "https://juchunko.com/docs/act/ai-basic-act"
+    }
+  },
   "questions": {
     "title": "TAIVote: Taiwan AI-policy Vote",
     "description": "您好，歡迎使用「TAIVote: Taiwan AI-policy Vote」，請根據您的想法回答以下問題，您的意見將有助於制定更符合民意的 AI 基本法，讓我們一起為了更好的台灣努力，再次感謝您的參與！",
