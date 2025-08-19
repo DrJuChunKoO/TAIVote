@@ -1,7 +1,7 @@
 import { getVoteResult } from "@/services/kv";
 import VoteButton from "./components/vote-button";
 import { VoteQuestion } from "./components/question";
-import Disclaimer from "./components/disclaimer";
+// import Disclaimer from "./components/disclaimer";
 import Introduction from "./components/introduction";
 import Footer from "./components/footer";
 export default async function IndexPage() {
