@@ -21,6 +21,10 @@ export default function Page() {
   const router = useRouter();
   const t = useTranslations("questions");
 
+  // Question order mapping: new display order -> original question ID
+  // 新順序第1題=原問題2, 第2題=原問題3, 第3題=原問題5, 第4題=原問題6, 第5題=原問題1, 第6題=原問題4
+  const questionOrder = [2, 3, 5, 6, 1, 4];
+
   // 0: Main screen
   // 1: Questions
   // 2: Submit screen
@@ -60,7 +64,9 @@ export default function Page() {
   }
   function setCurrentAnswer(answer: number) {
     setResult((res) => {
-      res[question - 1] = answer;
+      // Store answer based on original question ID, not display order
+      const originalQuestionId = questionOrder[question - 1];
+      res[originalQuestionId - 1] = answer;
       return res;
     });
     nextQuestion();
@@ -198,7 +204,7 @@ export default function Page() {
             >
               <div className="flex h-full flex-1 flex-col gap-2 p-6">
                 <div className="text-2xl font-semibold leading-[1.5em]">
-                  {t(`questions.question${question}.question`)}
+                  {t(`questions.question${questionOrder[question - 1]}.question`)}
                 </div>
               </div>
               <div className="absolute bottom-0 right-0 flex justify-end p-6 text-white opacity-20">
@@ -263,7 +269,7 @@ export default function Page() {
           )}
           {step === 1 &&
             t
-              .raw(`questions.question${question}.options`)
+              .raw(`questions.question${questionOrder[question - 1]}.options`)
               .map((option: string, index: number) => {
                 let color = "blue";
                 if (
@@ -274,12 +280,13 @@ export default function Page() {
                   color = "red";
                 }
 
+                const originalQuestionId = questionOrder[question - 1];
                 return (
                   <Button
                     color={color}
                     onClick={() => setCurrentAnswer(index + 1)}
                     className={twMerge(
-                      result[question - 1] === index + 1 &&
+                      result[originalQuestionId - 1] === index + 1 &&
                         "outline-none ring-2 ring-blue-400 ring-offset-2 ring-offset-[#282C33]",
                       color === `red` && "ring-red-400",
                       color === `teal` && "ring-teal-400",
